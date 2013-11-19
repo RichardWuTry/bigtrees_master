@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>大树社区 · 学习也社交</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/javascript/scrollpagination.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#content').scrollPagination({
+					'contentPage': 'democontent.html', // the url you are fetching the results
+					'contentData': {}, // these are the variables you can pass to the request, for example: children().size() to know which page you are
+					'scrollTarget': $(window), // who gonna scroll? in this example, the full window
+					'heightOffset': 10, // it gonna request when scroll is 10 pixels before the page ends
+					'beforeLoad': function(){ // before load function, you can display a preloader div
+						$('#loading').fadeIn();	
+					},
+					'afterLoad': function(elementsLoaded){ // after loading content, you can use this function to animate your new elements
+						 $('#loading').fadeOut();
+						 var i = 0;
+						 $(elementsLoaded).fadeInWithDelay();
+						 if ($('#content').children().size() > 100){ // if more than 100 results already loaded, then stop pagination (only for testing)
+						 	$('#nomoreresults').fadeIn();
+							$('#content').stopScrollPagination();
+						 }
+					}
+				});
+				
+				// code for fade in element by element
+				$.fn.fadeInWithDelay = function(){
+					var delay = 0;
+					return this.each(function(){
+						$(this).delay(delay).animate({opacity:1}, 200);
+						delay += 100;
+					});
+				};
+					   
+			});
+		</script>
+	</head>
+	<body>
+		<header class="navbar">
+			<div class="navbar-inner">
+				<a href="__URL__/index" class="brand">
+					<b>大树社区</b>
+					<span> 学习也社交</span>
+				</a>
+			</div>
+		</header>
+		<div id="wrapper">
+			<div id="stump">
+				<h2>首页</h2>
+				<p id="tagline">不同的人，不同的生活，不同的工具</p>
+			</div>
+			<nav id="main">
+				<ul>
+					<li>
+						<a href="__URL__/index" title="All articles.">首页</a>
+					</li>
+					<li>
+						<a href="__URL__/career" title="All interviews.">访谈分类</a>
+					</li>
+					<li>
+						<a href="__URL__/event" title="Community events.">线下活动</a>
+					</li>
+					<li>
+						<a href="__URL__/about" title="About us.">关于我们</a>
+					</li>
+				</ul>
+			</nav>
+			<div id="content">
+				<article class="interviewee">
+					<a href="" title="">
+						<img src="" width="500" height="335" class="portrait" alt="">
+					</a>
+					<h3 class="person">
+						<a href="" title=""></a>
+					</h3>
+					<p class="summary"></p>
+					<p class="date">
+						<time datetime=""></time>
+					</p>
+					<ul class="categories">
+						<li>
+							<a href="" title=""></a>
+						</li>
+					</ul>
+				</article>
+			</div>
+		</div>
+	</body>
+</html>

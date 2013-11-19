@@ -1,0 +1,129 @@
+a {
+  text-decoration: none;
+  cursor: pointer;  
+}
+
+a:link, a:visited {
+color: #fe2e9a;
+}
+
+a:hover {
+color: #555;
+}
+
+.navbar a {
+  color: #808080;
+
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 30px;
+  font-family: Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+  color: #383838;
+  text-rendering: optimizelegibility;
+  background-color: #ffffff;
+
+  -webkit-transition: all 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0;
+  -moz-transition: all 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0;
+  -o-transition: all 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0;
+  transition: all 0.25s cubic-bezier(0.7, 0, 0.175, 1) 0;
+  -moz-transition: all 0.2s ease-out;
+}
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  text-align: center;
+}
+.navbar .navbar-inner {
+  min-height: 40px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border-bottom: 1px solid #d9d9d9;
+}
+.navbar .brand {
+  float: none;
+  display: table;
+  height: 45px;
+  margin: 0 auto;
+  padding: 0;
+  font-size: 15px;
+  font-weight: normal;
+  color: #a6a6a6;
+  line-height: 45px;
+  -webkit-transition: all 0.218s ease-in-out;
+  -moz-transition: all 0.218s ease-in-out;
+  -o-transition: all 0.218s ease-in-out;
+  transition: all 0.218s ease-in-out;
+}
+.navbar .brand:hover {
+  background-color: transparent;
+  color: #a6a6a6;
+}
+.navbar .brand b {
+  float: left;
+  margin-top: -2px;
+  margin-right: 6px;
+  color: #383838;
+  font-size: 25px;
+  letter-spacing: 1px;
+  -webkit-transition: font-size 0.218s ease-in-out;
+  -moz-transition: font-size 0.218s ease-in-out;
+  -o-transition: font-size 0.218s ease-in-out;
+  transition: font-size 0.218s ease-in-out;
+}
+
+div#wrapper {
+  width: 1100px;
+  padding: 30px;
+  margin: auto;
+}
+
+div#stump {
+  position: fixed;
+  float: left;
+  width: 160px;
+}
+
+div#stump h2 {
+  padding: 0 0 10px 0;
+  margin: 5px 0 10px 0;
+  color: #fe2e9a;
+  border-bottom: solid 1px #ddd;
+}
+
+div#stump p {
+  font-size: 13px;
+}
+
+p#tagline {
+  padding: 0;
+  margin: 5px 0 10px 0;
+  color: #aaa;
+}
+
+nav#main ul {
+  position: fixed;
+  width: 160px;
+  top: 160px;
+  padding: 0;
+  margin: 0;
+  list-style: none inside;
+}
+
+nav#main ul li {
+  border-bottom: solid 1px #ddd;
+  padding: 7px 0 7px 0;
+}
+
+
+
