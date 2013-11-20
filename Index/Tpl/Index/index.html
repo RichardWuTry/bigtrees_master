@@ -7,36 +7,7 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 		<script type="text/javascript" src="__PUBLIC__/javascript/scrollpagination.js"></script>
 		<script type="text/javascript">
-			$(function(){
-				$('#content').scrollPagination({
-					'contentPage': 'democontent.html', // the url you are fetching the results
-					'contentData': {}, // these are the variables you can pass to the request, for example: children().size() to know which page you are
-					'scrollTarget': $(window), // who gonna scroll? in this example, the full window
-					'heightOffset': 10, // it gonna request when scroll is 10 pixels before the page ends
-					'beforeLoad': function(){ // before load function, you can display a preloader div
-						$('#loading').fadeIn();	
-					},
-					'afterLoad': function(elementsLoaded){ // after loading content, you can use this function to animate your new elements
-						 $('#loading').fadeOut();
-						 var i = 0;
-						 $(elementsLoaded).fadeInWithDelay();
-						 if ($('#content').children().size() > 100){ // if more than 100 results already loaded, then stop pagination (only for testing)
-						 	$('#nomoreresults').fadeIn();
-							$('#content').stopScrollPagination();
-						 }
-					}
-				});
-				
-				// code for fade in element by element
-				$.fn.fadeInWithDelay = function(){
-					var delay = 0;
-					return this.each(function(){
-						$(this).delay(delay).animate({opacity:1}, 200);
-						delay += 100;
-					});
-				};
-					   
-			});
+			
 		</script>
 	</head>
 	<body>
@@ -68,26 +39,28 @@
 						<a href="__URL__/about" title="About us.">关于我们</a>
 					</li>
 				</ul>
-			</nav>
+			</nav>			
 			<div id="content">
-				<article class="interviewee">
-					<a href="" title="">
-						<img src="" width="500" height="335" class="portrait" alt="">
-					</a>
-					<h3 class="person">
-						<a href="" title=""></a>
-					</h3>
-					<p class="summary"></p>
-					<p class="date">
-						<time datetime=""></time>
-					</p>
-					<ul class="categories">
-						<li>
-							<a href="" title=""></a>
-						</li>
-					</ul>
-				</article>
-			</div>
+				<volist name="articles" id="a">
+					<article class="interviewee">
+						<a href="" title="">
+							<img src="__PUBLIC__/picture/{$a.image_path}" width="500" height="335" class="portrait" alt="">
+						</a>
+						<h3 class="person">
+							<a href="" title="">{$a.title}</a>
+						</h3>
+						<p class="summary">{$a.subtitle}</p>
+						<p class="date">
+							<time datetime="{$a.posted_at}">{$a.posted_at}</time>
+						</p>
+						<ul class="categories">
+							<li>
+								<a href="" title=""></a>
+							</li>
+						</ul>
+					</article>
+				</volist>
+			</div>			
 		</div>
 	</body>
 </html>
