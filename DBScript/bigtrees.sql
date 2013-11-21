@@ -18,6 +18,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- 数据库: `bigtrees`
 --
+CREATE DATABASE IF NOT EXISTS `bigtrees` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `bigtrees`;
 
 -- --------------------------------------------------------
 

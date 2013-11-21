@@ -7,9 +7,13 @@ class IndexAction extends Action {
     							->order('priority desc, posted_at desc')
     							->limit(0,8)
     							->select()) {
+    		foreach ($articles as &$a) {
+    			$a['tag_list'] = explode(',', $a['tags']);
+    		}
     		$this->assign('articles', $articles);
     	}
 
 		$this->display();
     }
 }
+?>
