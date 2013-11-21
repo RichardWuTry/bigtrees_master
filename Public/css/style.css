@@ -188,4 +188,8 @@ ul.categories li a:hover{
   background-color: #ddd;
   color: #555 !important;
   border:solid 1px #aaa;
-};
+}
+
+div#answers {
+  width: 500px;
+}
