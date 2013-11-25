@@ -32,7 +32,32 @@ class AdminAction extends Action {
     }
 
     public function addArticle() {
-    	
+        if ($this->isPost()) {
+            $Article = D("Article");
+            if ($Article->create()){
+                if($article_id = $Article->add()){
+                    $sql = "insert into 
+                                tag
+                                (
+                                    article_id,
+                                    tag_name
+                                )
+                            values
+                                ";
+                    foreach(split(",",$Article->tags) as $t){
+                        $sql=$sql."(".$article_id.",".$t."),";
+                    }
+                    $sql = rtrim($sql,",");
+                    $Model = M();
+                    if ($Model->execute($sql)){
+                        $this->success();
+                    } else {
+                        $this->error($Model->getError());
+                    }
+                }
+            }
+            $this->error($Article->getError());
+        }    	
     }
 
     public function updateArticle() {
