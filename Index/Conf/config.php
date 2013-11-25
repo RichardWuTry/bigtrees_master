@@ -1,4 +1,6 @@
 <?php
+define('APP_PREFIX', 'bigtrees_');
+define('SESSION_COOKIE_PATH', '/bigtrees/');
 return array(
 	/* 数据库设置 */
     'DB_TYPE'               => 'mysql',     // 数据库类型
