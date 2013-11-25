@@ -19,5 +19,7 @@ return array(
     'DB_SQL_BUILD_CACHE'    => false, // 数据库查询的SQL创建缓存
     'DB_SQL_BUILD_QUEUE'    => 'file',   // SQL缓存队列的缓存方式 支持 file xcache和apc
     'DB_SQL_BUILD_LENGTH'   => 20, // SQL缓存的队列长度
+
+    'LOAD_EXT_CONFIG'       => 'user', // 加载扩展配置文件
 );
 ?>

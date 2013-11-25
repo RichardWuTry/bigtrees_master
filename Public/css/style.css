@@ -193,3 +193,25 @@ ul.categories li a:hover{
 div#answers {
   width: 500px;
 }
+
+.loading {
+  clear: both;
+  background:#D0D0D0;
+  color:#555;
+  font-size:20px;
+  padding:5px 10px;
+  text-align:center;
+  width:450px;
+  margin:0px auto;
+  display:none;
+  border-radius: 5px;
+}
+
+dt {
+  font-size: 130%;
+}
+
+dd {
+  padding: 10px;
+  margin: 0 0 20px 0;
+}

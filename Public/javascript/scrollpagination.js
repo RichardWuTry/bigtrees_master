@@ -29,8 +29,13 @@
   $.fn.stopScrollPagination = function(){
 	  return this.each(function() {
 	 	$(this).attr('scrollPagination', 'disabled');
-	  });
-	  
+	  });	  
+  };
+
+  $.fn.startScrollPagination = function(){
+		return this.each(function() {
+	 		$(this).attr('scrollPagination', 'enabled');
+	  	});	
   };
   
   $.fn.scrollPagination.loadContent = function(obj, opts){
@@ -44,7 +49,8 @@
 		 $.ajax({
 			  type: 'POST',
 			  url: opts.contentPage,
-			  data: opts.contentData,
+			  //data: opts.contentData,
+			  data: {start_row_no: $(obj).children(opts.childClass).size()},
 			  success: function(data){
 				$(obj).append(data); 
 				var objectsRendered = $(obj).children('[rel!=loaded]');
@@ -68,7 +74,7 @@
 	 		$.fn.scrollPagination.loadContent(obj, opts);		
 		}
 		else {
-			event.stopPropagation();	
+			event.stopPropagation();				
 		}
 	 });
 	 

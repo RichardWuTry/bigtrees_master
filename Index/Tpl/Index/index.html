@@ -8,22 +8,25 @@
 		<script type="text/javascript" src="__PUBLIC__/javascript/scrollpagination.js"></script>
 		<script type="text/javascript">
 			$(function(){
+				//set scroll pagination
 				$('#content').scrollPagination({
-					'contentPage': 'democontent.html', // the url you are fetching the results
-					'contentData': {}, // these are the variables you can pass to the request, for example: children().size() to know which page you are
-					'scrollTarget': $(window), // who gonna scroll? in this example, the full window
-					'heightOffset': 10, // it gonna request when scroll is 10 pixels before the page ends
-					'beforeLoad': function(){ // before load function, you can display a preloader div
+					'contentPage': '__URL__/nextPage',
+					'childClass': '.interviewee',
+					'scrollTarget': $(window), 
+					'heightOffset': 10, 
+					'beforeLoad': function(){
+						$('#content').stopScrollPagination();
 						$('#loading').fadeIn();	
 					},
-					'afterLoad': function(elementsLoaded){ // after loading content, you can use this function to animate your new elements
-						 $('#loading').fadeOut();
-						 var i = 0;
-						 $(elementsLoaded).fadeInWithDelay();
-						 if ($('#content').children().size() > 100){ // if more than 100 results already loaded, then stop pagination (only for testing)
+					'afterLoad': function(elementsLoaded){ 
+						$('#loading').fadeOut();
+						if($(elementsLoaded).length > 0) {
+							$(elementsLoaded).fadeInWithDelay();
+							$('#content').startScrollPagination();
+						} else {
 						 	$('#nomoreresults').fadeIn();
-							$('#content').stopScrollPagination();
-						 }
+							$('#content').stopScrollPagination();							
+						}
 					}
 				});
 				
@@ -35,7 +38,7 @@
 						delay += 100;
 					});
 				};
-			});
+			})
 		</script>
 	</head>
 	<body>
@@ -69,28 +72,15 @@
 				</ul>
 			</nav>			
 			<div id="content">
-				<volist name="articles" id="a">
-					<article class="interviewee">
-						<a href="__APP__/Article/showDetail/id/{$a.article_id}">
-							<img src="__PUBLIC__/picture/{$a.image_path}" width="500" height="335" class="portrait" alt="">
-						</a>
-						<h3 class="person">
-							<a href="__APP__/Article/showDetail/id/{$a.article_id}" >{$a.title}</a>
-						</h3>
-						<p class="summary">{$a.subtitle}</p>
-						<p class="date">
-							<time datetime="{$a.posted_at}">{$a.posted_at}</time>
-						</p>
-						<ul class="categories">
-							<volist name="a['tag_list']" id="tag">
-								<li>
-									<a href="__APP__/Article/showCategory/tag/{$tag}">{$tag}</a>
-								</li>
-							</volist>
-						</ul>
-					</article>
-				</volist>
-			</div>			
+				<include file="nextPage" />
+			</div>
+		    <div class="loading" id="loading">
+		    	<img src="__PUBLIC__/image/loadingbar.gif" alt="Loading...">
+		    	<div>载入更多...</div>
+		    </div>
+		    <div class="loading" id="nomoreresults">
+		    	<div>到底部了</div>
+		    </div>		
 		</div>
 	</body>
 </html>

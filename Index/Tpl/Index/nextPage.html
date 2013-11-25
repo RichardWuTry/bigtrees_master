@@ -1,0 +1,21 @@
+<volist name="articles" id="a">
+	<article class="interviewee">
+		<a href="__APP__/Article/showDetail/id/{$a.article_id}">
+			<img src="__PUBLIC__/picture/{$a.image_path}" width="500" height="335" class="portrait" alt="">
+		</a>
+		<h3 class="person">
+			<a href="__APP__/Article/showDetail/id/{$a.article_id}" >{$a.title}</a>
+		</h3>
+		<p class="summary">{$a.subtitle}</p>
+		<p class="date">
+			<time datetime="{$a.posted_at}">{$a.posted_at}</time>
+		</p>
+		<ul class="categories">
+			<volist name="a['tag_list']" id="tag">
+				<li>
+					<a href="__APP__/Article/showCategory/tag/{$tag}">{$tag}</a>
+				</li>
+			</volist>
+		</ul>
+	</article>
+</volist>
