@@ -40,7 +40,7 @@
         width:45px;
 }
 
-.sole_form_wrapper form input.text {
+.sole_form_wrapper form input.text, .sole_form_wrapper form textarea{
         font-size: 110%;
         border: 1px solid #D8DEE2;
         margin: 0.2em 0 1em;

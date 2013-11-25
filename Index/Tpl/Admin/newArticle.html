@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8" />
+        <title>新文章</title>
+        <link rel="stylesheet" href="__PUBLIC__/css/admin_common.css" />
+        <link rel="stylesheet" href="__PUBLIC__/css/sole_form.css" />
+        <link rel="stylesheet" href="__PUBLIC__/css/head_panel.TopRightBtn.css" />
+        <style>
+                .sole_form_wrapper {
+                        margin: 0em auto;
+                        padding: 5em 0;
+                        width: 62em;
+                }
+
+                .sole_form_wrapper form label span{
+                        display:inline-block; 
+                        width:200px;
+                }
+        </style>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="__PUBLIC__/javascript/InputValidate.js"></script>
+        <script src="__PUBLIC__/javascript/jqTools.js"></script>
+        <script>
+                var msg;
+                
+                $(function(){
+                        msg = $('#topSlideMsg');
+                
+                        $('#submit').click(function(event){
+                                event.preventDefault();
+                                //validate form input
+                                if (!validateEmail($('#email')[0], msg[0], 'Email或密码有误', '')
+                                        || !validateLength(6, 12, $('#password')[0], msg[0], 'Email或密码有误', '')) {
+                                        slideBox(msg, 2000, 'red');
+                                        return false;
+                                }
+                                
+                                var data = $('#addArticle_form').serializeArray();
+                                
+                                //post login info
+                                $.post(
+                                        '__URL__/loginUser',
+                                        data,
+                                        loginResponse,
+                                        'json'
+                                );
+                        });
+                        
+                        //process login ajax response
+                        function loginResponse(data) {
+                                if (data.status == 1) {
+                                        // is admin
+                                        if (data.info == 1) {
+                                                window.location = "__APP__/Admin/listArticle";
+                                        } else {
+                                                window.location = "__APP__/Index/index";
+                                        }                                
+                                } else {
+                                        slideBox(msg.text(data.info), 2000, 'red');
+                                }                        
+                        }
+                });
+        </script>
+</head>
+<body>
+        <header>
+                <if condition="isset($username)">
+                        <ul class="head_panel">
+                                <li class="head_panel_item">
+                                        <span>{$username}</span>
+                                </li>
+                                <li class="head_panel_item">
+                                        <a href="__APP__/User/logout/">Logout</a>
+                                </li>
+                        </ul>
+                </if>
+        </header>
+        <div id="wrapper">
+                <div id="topSlideMsg"></div>
+                <div class="sole_form_wrapper">
+                        <form method="post" action="__URL__/addArticle" id="addArticle_form">
+                                <h1>新文章</h1>
+                                <div class="formbody">
+                                        <label for="article_type">
+                                                <span>Article Type</span>
+                                                <input id="article_type" class="text" type="text" tabindex="1" style="width:47em;" name="article_type">
+                                        </label>
+                                        <label for="article_subtype">
+                                                <span>Article SubType</span>
+                                                <input id="article_subtype" class="text" type="text" tabindex="2" style="width:47em;" name="article_subtype">
+                                        </label>
+                                        <label for="title">
+                                                <span>Title</span>
+                                                <input id="title" class="text" type="text" tabindex="3" style="width:47em;" name="title">
+                                        </label>
+                                        <label for="subtitle">
+                                                <span>Subtitle</span>
+                                                <input id="subtitle" class="text" type="text" tabindex="4" style="width:47em;" name="subtitle">
+                                        </label>
+                                        <label for="image_path">
+                                                <span>Image Path</span>
+                                                <input id="image_path" class="text" type="text" tabindex="5" style="width:47em;" name="image_path">
+                                        </label>
+                                        <label for="content">
+                                                <span>Content</span>
+                                                <textarea id="content" name="content" tabindex="6" style="width:58em;height:47em;"></textarea>
+                                        </label>
+                                        <label for="tags">
+                                                <span>Tags</span>
+                                                <input id="tags" class="text" type="text" tabindex="7" style="width:47em;" name="tags">
+                                        </label>
+                                        <label for="posted_at">
+                                                <span>Posted At</span>
+                                                <input id="posted_at" class="text" type="text" tabindex="8" style="width:47em;" name="posted_at">
+                                        </label>
+                                        <label for="priority">
+                                                <span>Priority</span>
+                                                <input id="priority" class="text" type="text" tabindex="9" style="width:47em;" name="priority" value="0">
+                                        </label>
+                                        <label for="is_active">
+                                                <span>Is Active</span>
+                                                <input id="is_active" class="text" type="text" tabindex="10" style="width:47em;" name="is_active" value="1">
+                                        </label>
+                                        <label class="submit_btn">
+                                                <input type="submit" value="提 交" tabindex="11" class="btn" id="submit">
+                                        </label>
+                                </div>
+                        </form>
+                </div>
+        </div>
+        <footer></footer>
+</body>
+</html>
