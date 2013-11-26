@@ -2,34 +2,64 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>我的大树</title>
+    <title>文章列表</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/admin_common.css" />
+	<link rel="stylesheet" href="__PUBLIC__/css/panel.css" />
+	<link rel="stylesheet" href="__PUBLIC__/css/head_panel.TopRightBtn.css" />
+	<style type="text/css">
+        header {
+            padding-bottom: 30px;
+        }
+	</style>
 </head>
 <body>
+    <header>
+        <if condition="isset($username)">
+            <ul class="head_panel">
+                <li class="head_panel_item">
+                    <span>{$username}</span>
+                </li>
+                <li class="head_panel_item">
+                    <a href="__APP__/User/logout/">Logout</a>
+                </li>
+            </ul>
+        </if>
+    </header>
 	<div id="wrapper">
-		<table>
-			<tr>
-				<th>article_id</th>
-				<th>article_type</th>
-				<th>title</th>
-				<th>subtitle</th>
-				<th>image_path</th>
-				<th>tags</th>
-				<th>posted_at</th>
-				<th>priority</th>
-				<th>is_active</th>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
+		<div id="topSlideMsg"></div>
+		<div class="panel_wrapper">
+			<h1>成员管理</h1>
+			<div class="panelbody">
+				<table>
+					<tr>						
+						<th>id</th>
+						<th>type</th>
+						<th>subtype</th>
+						<th>title</th>
+						<th>subtitle</th>
+						<th>image_path</th>
+						<th>tags</th>
+						<th>posted_at</th>
+						<th>priority</th>
+						<th>is_active</th>
+					</tr>
+					<volist name="articles" id="a">
+						<tr>
+							<td><a href="__URL__/modifyArticle/id/{$a.article_id}">{$a.article_id}</a></td>
+							<td>{$a.article_type}</td>
+							<td>{$a.article_subtype}</td>
+							<td>{$a.title}</td>
+							<td>{$a.subtitle}</td>
+							<td>{$a.image_path}</td>
+							<td>{$a.tags}</td>
+							<td>{$a.posted_at}</td>
+							<td>{$a.priority}</td>
+							<td>{$a.is_active}</td>
+						</tr>
+					</volist>
+				</table>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

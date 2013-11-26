@@ -7,9 +7,11 @@
         <link rel="stylesheet" href="__PUBLIC__/css/sole_form.css" />
         <link rel="stylesheet" href="__PUBLIC__/css/head_panel.TopRightBtn.css" />
         <style>
+                header {
+                    padding-bottom: 30px;
+                }
+
                 .sole_form_wrapper {
-                        margin: 0em auto;
-                        padding: 5em 0;
                         width: 62em;
                 }
 
@@ -34,7 +36,8 @@
                                         || !validateNonEmpty($('#title')[0], msg[0], 'Title不能为空', '')
                                         || !validateNonEmpty($('#subtitle')[0], msg[0], 'Subtitle不能为空', '')
                                         || !validateNonEmpty($('#image_path')[0], msg[0], 'Image Path不能为空', '')
-                                        || !validateNonEmpty($('#content')[0], msg[0], 'Content不能为空', '')) {
+                                        || !validateNonEmpty($('#content')[0], msg[0], 'Content不能为空', '')
+                                        || !validateNonEmpty($('#tags')[0], msg[0], 'Tags不能为空')) {
                                         slideBox(msg, 2000, 'red');
                                         return false;
                                 }

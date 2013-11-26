@@ -8,22 +8,13 @@ class AdminAction extends Action {
     }
 
     public function listArticle() {
-/*        if (isset($_GET['start_row_no'])) {
-            $start_row_no = $_GET['start_row_no'];
-        } else {
-            $start_row_no = 0;
-        }
-        $Article = M('Article');
+        $this->assign('username', $_SESSION[APP_PREFIX.'user_name']);
+        $Article = M("Article");
         if ($articles = $Article->order('priority desc, posted_at desc')
-                                ->limit($start_row_no,8)
-                                ->select()) {
-            foreach ($articles as &$a) {
-                $a['tag_list'] = explode(',', $a['tags']);
-            }
+                                ->select()){
             $this->assign('articles', $articles);
         }
-
-        $this->display();*/
+        $this->display();
     }
 
     public function newArticle() {
@@ -35,29 +26,26 @@ class AdminAction extends Action {
         if ($this->isPost()) {
             $Article = D("Article");
             if ($Article->create()){
+                $tag_string = $Article->tags;
                 if($article_id = $Article->add()){
-                    $sql = "insert into 
-                                tag
-                                (
-                                    article_id,
-                                    tag_name
-                                )
-                            values
-                                ";
-                    foreach(split(",",$Article->tags) as $t){
-                        $sql=$sql."(".$article_id.",".$t."),";
+                    foreach (split(",",$tag_string) as $key => $tag) {
+                        $data[$key]['article_id'] = $article_id;
+                        $data[$key]['tag_name'] = $tag;
                     }
-                    $sql = rtrim($sql,",");
-                    $Model = M();
-                    if ($Model->execute($sql)){
+                    $Tag = M("Tag");
+                    if ($Tag->addAll($data)){
                         $this->success();
                     } else {
-                        $this->error($Model->getError());
+                        $this->error($Tag->getError());
                     }
-                }
+                 }
             }
             $this->error($Article->getError());
         }    	
+    }
+
+    public function modifyArticle() {
+        
     }
 
     public function updateArticle() {
