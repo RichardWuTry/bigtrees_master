@@ -10,7 +10,7 @@
 			$(function(){
 				//set scroll pagination
 				$('#content').scrollPagination({
-					'contentPage': '__APP__/Index/nextPage',
+					'contentPage': '__APP__/Index/nextPage/tag/{$tag}',
 					'childClass': '.interviewee',
 					'scrollTarget': $(window), 
 					'heightOffset': 10, 
@@ -52,7 +52,7 @@
 		</header>
 		<div id="wrapper">
 			<div id="stump">
-				<h2>首页</h2>
+				<h2>{$tag}</h2>
 				<p id="tagline">不同的人，不同的生活，不同的工具</p>
 			</div>
 			<nav id="main">
@@ -72,7 +72,7 @@
 				</ul>
 			</nav>			
 			<div id="content">
-				<include file="nextPage" />
+				<include file="Index:nextPage" />
 			</div>
 		    <div class="loading" id="loading">
 		    	<img src="__PUBLIC__/image/loadingbar.gif" alt="Loading...">

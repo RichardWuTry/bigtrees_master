@@ -147,6 +147,13 @@ h3 {
   font-size: 150%;
 }
 
+h4 {
+  clear: left;
+  padding: 0;
+  margin: 0 0 10px 0;
+  font-size: 125%;
+}
+
 p.date {
   padding: 0;
   margin: 0;
@@ -188,6 +195,18 @@ ul.categories li a:hover{
   background-color: #ddd;
   color: #555 !important;
   border:solid 1px #aaa;
+}
+
+ul.categories.all li {
+  display: inline;
+  margin: 0;
+}
+
+ul.categories.all li a:link, ul.categories.all li a:visited {
+  display: block;
+  width: 100px;
+  float: left;
+  margin: 2px;
 }
 
 div#answers {
