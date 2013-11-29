@@ -3,8 +3,12 @@
 	<head>
 		<title>大树社区 · 学习也社交</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">		
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<!-- begin: scroll top function css and js -->
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/back_to_top.css">
+		<script type="text/javascript" src="__PUBLIC__/javascript/back_to_top.js"></script>
+		<!-- end: scroll top function css and js -->
 		<script type="text/javascript" src="__PUBLIC__/javascript/scrollpagination.js"></script>
 		<script type="text/javascript">
 			$(function(){
@@ -43,7 +47,7 @@
 			})
 		</script>
 	</head>
-	<body>
+	<body id="#top">
 		<header class="navbar">
 			<div class="navbar-inner">
 				<a href="__APP__/Index/index" class="brand">
@@ -82,6 +86,9 @@
 		    </div>
 		    <div class="loading" id="nomoreresults">
 		    	<div>到底部了</div>
+		    </div>
+		    <div id="back-top">
+		    	<a href="#top"><span></span>回到顶部</a>
 		    </div>		
 		</div>
 	</body>
