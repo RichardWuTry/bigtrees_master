@@ -9,9 +9,9 @@
 		<script type="text/javascript">
 			$(function(){
 				//set scroll pagination
-				if($('.interviewee').length >= <?php echo C('per_page_count');?>) {
+				if($('.interviewee').length >= <?php echo C('per_page_count');?>) {				
 					$('#content').scrollPagination({
-						'contentPage': '__APP__/Article/nextPage',
+						'contentPage': '__APP__/Article/nextPage/type/{$type}/tag/{$tag}',
 						'childClass': '.interviewee',
 						'scrollTarget': $(window), 
 						'heightOffset': 10, 
@@ -54,7 +54,7 @@
 		</header>
 		<div id="wrapper">
 			<div id="stump">
-				<h2>首页</h2>
+				<h2>线下活动</h2>
 				<p id="tagline">不同的人，不同的生活，不同的工具</p>
 			</div>
 			<nav id="main">

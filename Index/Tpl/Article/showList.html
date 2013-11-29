@@ -9,26 +9,28 @@
 		<script type="text/javascript">
 			$(function(){
 				//set scroll pagination
-				$('#content').scrollPagination({
-					'contentPage': '__APP__/Index/nextPage/tag/{$tag}',
-					'childClass': '.interviewee',
-					'scrollTarget': $(window), 
-					'heightOffset': 10, 
-					'beforeLoad': function(){
-						$('#content').stopScrollPagination();
-						$('#loading').fadeIn();	
-					},
-					'afterLoad': function(elementsLoaded){ 
-						$('#loading').fadeOut();
-						if($(elementsLoaded).length > 0) {
-							$(elementsLoaded).fadeInWithDelay();
-							$('#content').startScrollPagination();
-						} else {
-						 	$('#nomoreresults').fadeIn();
-							$('#content').stopScrollPagination();							
+				if($('.interviewee').length >= <?php echo C('per_page_count');?>) {
+					$('#content').scrollPagination({
+						'contentPage': '__APP__/Article/nextPage/type/{$type}/tag/{$tag}',
+						'childClass': '.interviewee',
+						'scrollTarget': $(window), 
+						'heightOffset': 10, 
+						'beforeLoad': function(){
+							$('#content').stopScrollPagination();
+							$('#loading').fadeIn();	
+						},
+						'afterLoad': function(elementsLoaded){ 
+							$('#loading').fadeOut();
+							if($(elementsLoaded).length > 0) {
+								$(elementsLoaded).fadeInWithDelay();
+								$('#content').startScrollPagination();
+							} else {
+							 	$('#nomoreresults').fadeIn();
+								$('#content').stopScrollPagination();							
+							}
 						}
-					}
-				});
+					});
+				}
 				
 				// code for fade in element by element
 				$.fn.fadeInWithDelay = function(){
@@ -72,7 +74,7 @@
 				</ul>
 			</nav>			
 			<div id="content">
-				<include file="Index:nextPage" />
+				<include file="Article:nextPage" />
 			</div>
 		    <div class="loading" id="loading">
 		    	<img src="__PUBLIC__/image/loadingbar.gif" alt="Loading...">

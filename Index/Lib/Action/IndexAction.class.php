@@ -3,46 +3,11 @@
 class IndexAction extends Action {
     //首页 Index/index
     public function index(){
-        $this->displayArticles(0);
-    }
-
-    public function nextPage(){
-        if ($this->isPost()) {
-            $condition = '';
-            if (isset($_GET['tag'])) {
-                $tag = $_GET['tag'];
-                $condition = $condition."
-                            and
-                            article_id in (select article_id from tag where tag_name = '{$tag}')
-                            ";
-            }
-            $start_row_no = $_POST['start_row_no'];
-            $this->displayArticles($start_row_no, $condition);   
+        $ArticleAction = new ArticleAction();
+        if ($articles = $ArticleAction->getArticles(0)){
+            $this->assign('articles', $articles);                
         }
-    }
-
-    public function displayArticles($start_row_no, $condition=''){
-        $Model = M();
-        $row_cnt = C('IndexAction.per_page_count');
-        if ($articles = $Model->query("
-                select
-                    *
-                from
-                    article
-                where
-                    is_active = 1
-                    {$condition}
-                order by
-                    priority desc, posted_at desc
-                limit
-                    {$start_row_no},{$row_cnt}
-            ")) {
-                foreach ($articles as &$a) {
-                    $a['tag_list'] = explode(',', $a['tags']);
-                }
-                $this->assign('articles', $articles);
-        }
-        $this->display();
+        $this->display();  
     }
 
     //访谈分类 Index/interview
@@ -53,15 +18,41 @@ class IndexAction extends Action {
                     tag_name
                 from
                     tag
+                where
+                    article_id in (select
+                                        article_id 
+                                    from 
+                                        article 
+                                    where 
+                                        is_active = 1
+                                        and
+                                        article_type = '访谈')
             ")) {
             $this->assign('tags', $tags);
         }
+        $type = '访谈';
+        $this->assign('type', $type);
         $this->display();
+    }
+
+    //先下活动
+    public function event(){
+        $type = '活动';
+        $condition = "
+                    and
+                    article_type = '{$type}'
+                    ";
+        $ArticleAction = new ArticleAction();
+        if ($articles = $ArticleAction->getArticles(0, $condition)){
+            $this->assign('articles', $articles);                
+        }
+        $this->assign('type', $type);
+        $this->display();        
     }
 
     //关于我们 Index/about
     public function about(){
         $this->display();
-    }
+    }   
 }
 ?>

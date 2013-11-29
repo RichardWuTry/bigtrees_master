@@ -1,7 +1,5 @@
 <?php
 	return array(
-		'IndexAction' => array(
-			'per_page_count' => 8
-		)
+		'per_page_count' => 8
 	);
 ?>

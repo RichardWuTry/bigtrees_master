@@ -8,7 +8,7 @@
 	<body>
 		<header class="navbar">
 			<div class="navbar-inner">
-				<a href="__URL__/index" class="brand">
+				<a href="__APP__/Index/index" class="brand">
 					<b>大树社区</b>
 					<span> 学习也社交</span>
 				</a>
@@ -40,7 +40,7 @@
 				<ul class="categories all">
 					<volist name="tags" id="t">
 						<li>
-							<a href="__APP__/Article/listInterview/tag/{$t.tag_name}" rel="category" title="View all {$t.tag_name} interviews.">{$t.tag_name}</a>							
+							<a href="__APP__/Article/showList/type/{$type}/tag/{$t.tag_name}" rel="category" title="View all {$t.tag_name} interviews.">{$t.tag_name}</a>							
 						</li>
 					</volist>
 				</ul>
